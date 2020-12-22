@@ -26,7 +26,7 @@ function Header() {
                 <HelpOutlineIcon />
             </div>
         </div>
-    )
+    );
 }
 
 export default Header;
