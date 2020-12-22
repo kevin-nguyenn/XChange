@@ -6,6 +6,12 @@
     flex: 0.3;
 }
 
+.sidebar > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #49274b;
+}
+
 .sidebar__header {
     display: flex;
     justify-content: space-between;
