@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Stylesheets/Sidebar.css';
 import SideBarOption from './SidebarOption';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -13,8 +13,22 @@ import { Add, Apps,
     InsertComment, 
     PeopleAlt 
 } from '@material-ui/icons/';
+import db from '../firebase';
 
 function Sidebar() {
+    const [channels, setChannels] = useState([]);
+
+    useEffect(() => {
+        db.collection('rooms').onSnapshot((snapshot) => (
+            setChannels(
+                snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    name: doc.data().name
+                }))
+            ))
+        );
+    }, [])
+
     return (
         <div className="sidebar">
             <div className="sidebar__header">
@@ -39,6 +53,10 @@ function Sidebar() {
             <SideBarOption Icon={ExpandMore} title="Channels" />
             <hr/>
             <SideBarOption Icon={Add} title="Add Channel" />
+
+            {channels.map((channel) => (
+                <SideBarOption title={channel.name} id={channel.id}/>
+            ))}
         </div>
     );
 }
