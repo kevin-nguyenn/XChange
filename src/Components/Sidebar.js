@@ -14,9 +14,11 @@ import { Add, Apps,
     PeopleAlt 
 } from '@material-ui/icons/';
 import db from '../firebase';
+import { useStateValue } from './StateProvider';
 
 function Sidebar() {
     const [channels, setChannels] = useState([]);
+    const [{ user }] = useStateValue();
 
     useEffect(() => {
         db.collection('rooms').onSnapshot((snapshot) => (
@@ -36,7 +38,7 @@ function Sidebar() {
                     <h2>Clever Programer</h2>
                     <h3>
                         <FiberManualRecordIcon />
-                        Kevin Nguyen
+                        {user?.displayName}
                     </h3>
                 </div>
                 <CreateIcon />
