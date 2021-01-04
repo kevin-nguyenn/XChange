@@ -25,7 +25,7 @@ function App() {
                   <Chat/>
                 </Route>
                 <Route path="/">
-                  <h1>Welcome</h1>
+                  <h1>Welcome to XChange!</h1>
                 </Route>
               </Switch>
             </div>
